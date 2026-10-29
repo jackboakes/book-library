@@ -4,7 +4,7 @@ function Book(title, author, page, read) {
     if(!new.target) {
         throw Error("You must use the 'new' operator to call the constructor.");
     }
-    this._id = crypto.randomUUID();
+    this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.page = page;
@@ -40,24 +40,42 @@ function addBookToContainer(book) {
     const title = document.createElement("p");
     title.classList.add("book-title");
     title.textContent = book.title;
+    title.dataset.id = book.id;
     bookContainer.appendChild(title);
 
     const author = document.createElement("p");
     author.textContent = book.author;
+    author.dataset.id = book.id;
     bookContainer.appendChild(author);
 
     const page = document.createElement("p");
     page.textContent = book.page;
+    page.dataset.id = book.id;
     bookContainer.appendChild(page);
 
     const read = document.createElement("p");
     read.classList.add("book-read");
-    read.addEventListener("click", e =>{
+    read.addEventListener("click", e => {
         book.read === true ? book.read = false : book.read = true;
         reloadBookContainer();
     });
-    read.textContent = book.read === true ? "read" : "unread";
+    read.textContent = book.read === true ? "Read" : "Unread";
+    read.dataset.id = book.id;
     bookContainer.appendChild(read);
+
+    const deleteBook = document.createElement("p");
+    deleteBook.dataset.id = book.id;
+    deleteBook.textContent = "delete";
+    deleteBook.classList.add("book-delete");
+    deleteBook.addEventListener("click", e => {
+        const index = library.findIndex(element => element.id === book.id);
+        if (index !== -1) {
+            library.splice(index, 1);
+        }
+
+        reloadBookContainer();
+    });
+    bookContainer.appendChild(deleteBook);
 }
 
 library.forEach(book => {

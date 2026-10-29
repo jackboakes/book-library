@@ -3,7 +3,7 @@
     --text-colour: #111;
     --background-colour: #fff;
     --accent-colour: #fe7502;
-    --grid-columns: 4;
+    --grid-columns: 5;
 }
 
 * {
@@ -56,23 +56,18 @@ li {
 
 .container-titles {
     display: grid;
-    grid-template-columns: 2fr repeat(calc(var(--grid-columns) - 2), 1fr) 0.5fr;
+    grid-template-columns: 2fr 1fr 1fr 0.5fr 0.5fr;
 }
 
-.container-titles h2:not(:first-child, :nth-child(4)) {
+.container-titles h2:not(:first-child, :nth-child(5)) {
     width: 60%;
     justify-self: center;
-}
-
-.container-titles h2:nth-child(4) {
-    width: fit-content;
-    justify-self: end;
 }
 
 .book-container {
     grid-column: 1 / calc(var(--grid-columns) + 1);
     display: grid;
-    grid-template-columns: 2fr repeat(calc(var(--grid-columns) - 2), 1fr) 0.5fr;
+    grid-template-columns: 2fr 1fr 1fr 0.5fr 0.5fr;
     grid-auto-rows: auto;
     margin-top: 10px;
 }
@@ -83,18 +78,19 @@ li {
 }
 
 .book-title:hover,
-.book-read:hover {
+.book-read:hover,
+.book-delete:hover {
     color: var(--accent-colour);
     text-decoration: underline;
     cursor: pointer;
 }
 
-.book-read {
+.delete-book {
     width: fit-content;
     justify-self: end;
 }
 
-.book-container > p:not(.book-title, .book-read) {
+.book-container > p:not(.book-title, .book-delete) {
     width: 60%;
     justify-self: center;
 }
@@ -105,6 +101,7 @@ dialog {
     border: 0;
     padding: 30px;
 }
+
 .form-row:nth-child(5) {
     display: block;
 }
