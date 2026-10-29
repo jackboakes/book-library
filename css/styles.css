@@ -77,7 +77,6 @@ li {
     margin-left: 0;
 }
 
-.book-title:hover,
 .book-read:hover,
 .book-delete:hover {
     color: var(--accent-colour);
@@ -85,9 +84,8 @@ li {
     cursor: pointer;
 }
 
-.delete-book {
-    width: fit-content;
-    justify-self: end;
+.book-delete {
+    text-align: end;
 }
 
 .book-container > p:not(.book-title, .book-delete) {
