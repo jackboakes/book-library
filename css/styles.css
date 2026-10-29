@@ -77,15 +77,20 @@ li {
     margin-left: 0;
 }
 
-.book-read:hover,
-.book-delete:hover {
+.book-read:hover {
     color: var(--accent-colour);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.book-delete:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
 .book-delete {
     text-align: end;
+    color: #f03500;
 }
 
 .book-container > p:not(.book-title, .book-delete) {
