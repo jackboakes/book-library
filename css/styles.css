@@ -17,7 +17,7 @@ body {
     padding: 20px;
 }
 
-header
+.page-header
 {
     border-bottom: 1px solid var(--text-colour);
     padding-bottom: 5px;
@@ -36,7 +36,7 @@ header nav {
     justify-content: end;
 }
 
-header button {
+.page-header button {
     display: block;
     border: 0;
     background-color: transparent;
@@ -44,7 +44,7 @@ header button {
     font-size: 24px;
 }
 
-header button:hover {
+.page-header button:hover {
     color: var(--accent-colour);
     text-decoration: underline;
     cursor: pointer;
@@ -102,9 +102,8 @@ dialog {
     margin: auto;
     border: 0;
     border: 0;
-    padding: 20px;
+    padding: 30px;
 }
-
 .form-row:nth-child(5) {
     display: block;
 }
@@ -116,16 +115,58 @@ dialog {
     align-self: center;
 }
 
-.form-row input {
+input {
     padding: 5px 6px;
     margin-top: 2px;
     font-size: 16px;
+    border-radius: 0px;
+    border: 1px solid var(--text-colour);
+    
+}
+
+input:user-invalid {
+    border-color: red;
+}
+
+input:focus {
+    outline-color: blue;
 }
 
 .form-row label {
     font-size: 16px;
 }
 
-dialog button {
+dialog button[type="submit"] {
+    width: 100%;
     padding: 10px 12px;
+    background-color: var(--background-colour);
+    border: 1px solid var(--text-colour);
+    margin-top: 10px;
+    font-family: var(--font);
+    font-size: 16px;
 }
+
+dialog button[type="submit"]:hover {
+    background-color: #e3e3e3;
+}
+
+#close-modal {
+    border: 0;
+    background: transparent;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#close-modal:hover {
+    opacity: 0.3;
+    transition: ease-in 0.15s;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    gap: 100px;
+    margin-bottom: 10px;
+}
+

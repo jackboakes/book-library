@@ -73,3 +73,10 @@ addBookForm.addEventListener("submit", e => {
     addBookToLibrary(book);
     addBookToContainer(book);
 });
+
+const dialog = document.querySelector("dialog");
+const closeModalButton = document.getElementById("close-modal");
+
+closeModalButton.addEventListener("click", e => {
+    dialog.close();
+});

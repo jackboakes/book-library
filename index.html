@@ -8,7 +8,7 @@
     <script src="./js/script.js" defer></script>
 </head>
 <body>
-    <header>
+    <header class="page-header">
         <h1>Library of Books</h1>
         <nav>
             <ul>
@@ -25,9 +25,11 @@
         </div>
     </div>
     <dialog id="hello-world">
-        
         <form id="add-book-form">
-            <h1>Add New Book</h1>
+            <header class="button-container">
+                <h1>Add New Book</h1>
+                <button id="close-modal">✕</button>
+            </header>
             <div class="form-row">
                 <label for="title">Title *</label>
                 <input type="text" id="title" name="title" required />
@@ -43,7 +45,7 @@
             <div class="form-row">
                 
                 <input type="checkbox" id="read" name="read" />
-                <label for="read">Read *</label>
+                <label for="read">Read</label>
             </div>
             <button type="submit">Submit</button>
         </form>
