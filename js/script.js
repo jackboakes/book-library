@@ -4,7 +4,7 @@ function Book(title, author, page, read) {
     if(!new.target) {
         throw Error("You muse use the 'new' operator to call the constructor.");
     }
-    this.id = crypto.randomUUID();
+    this._id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.page = page;
@@ -17,11 +17,17 @@ function addBookToLibrary(title, author, page, read) {
 }
 
 addBookToLibrary("Fear and Loathing in Las Vegas: A Savage Journey to the Heart of the American Dream", "Hunter S. Thompson", 204, true);
+addBookToLibrary("Hell's Angels", "Hunter S. Thompson", 295, true);
+addBookToLibrary("Ways of Seeing", "John Berger", 176, true);
+addBookToLibrary("Kitchen Confidential", "Anthony Bourdain", 362, true);
+addBookToLibrary("The Odyssey of Homer", "Homer, Richmond Lattimore", 390, true);
+addBookToLibrary("Programmers at Work: Interviews With 19 Programmers Who Shaped the Computer Industry", "Susan Lammers", 391, true);
 
 const bookContainer = document.querySelector(".book-container");
 
 library.forEach(book => {
     const title = document.createElement("p");
+    title.classList.add("book-title");
     title.textContent = book.title;
     bookContainer.appendChild(title);
 
