@@ -25,7 +25,7 @@ addBookToLibrary("Programmers at Work: Interviews With 19 Programmers Who Shaped
 
 const bookContainer = document.querySelector(".book-container");
 
-library.forEach(book => {
+function addBookToContainer(book) {
     const title = document.createElement("p");
     title.classList.add("book-title");
     title.textContent = book.title;
@@ -42,4 +42,34 @@ library.forEach(book => {
     const read = document.createElement("p");
     read.textContent = book.read;
     bookContainer.appendChild(read);
+}
+
+library.forEach(book => {
+    addBookToContainer(book);
+});
+
+
+let addBookForm = document.getElementById("add-book-form");
+
+addBookForm.addEventListener("submit", e => {
+    e.preventDefault();
+    
+    const title = document.getElementsByName("title");
+    const author = document.getElementsByName("author");
+    const pages = document.getElementsByName("pages");
+    const read = document.getElementsByName("read");
+    
+    let readResult = false;
+    if(read[0].checked)
+    {
+        readResult = true;
+    }
+    else
+    {
+        readResult = false;
+    }
+
+    const book = new Book(title[0].value, author[0].value, pages[0].value, readResult);
+    addBookToLibrary(book);
+    addBookToContainer(book);
 });

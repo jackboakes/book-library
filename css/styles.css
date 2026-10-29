@@ -1,6 +1,7 @@
 :root {
     --font: Helvetica, Arial, sans-serif;
     --text-colour: #111;
+    --background-colour: #fff;
     --accent-colour: #fe7502;
     --grid-columns: 4;
 }
@@ -21,6 +22,36 @@ header
     border-bottom: 1px solid var(--text-colour);
     padding-bottom: 5px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-content: end;
+    position: sticky;
+    top: 0;
+    background-color: var(--background-colour)
+}
+
+header nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+header button {
+    display: block;
+    border: 0;
+    background-color: transparent;
+    font-family: var(--font);
+    font-size: 24px;
+}
+
+header button:hover {
+    color: var(--accent-colour);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
 }
 
 .container-titles {
@@ -65,4 +96,36 @@ header
 .book-container > p:nth-of-type(4n) {
     width: fit-content;
     justify-self: end;
+}
+
+dialog {
+    margin: auto;
+    border: 0;
+    border: 0;
+    padding: 20px;
+}
+
+.form-row:nth-child(5) {
+    display: block;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    padding-block: 12px;
+    align-self: center;
+}
+
+.form-row input {
+    padding: 5px 6px;
+    margin-top: 2px;
+    font-size: 16px;
+}
+
+.form-row label {
+    font-size: 16px;
+}
+
+dialog button {
+    padding: 10px 12px;
 }
