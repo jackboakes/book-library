@@ -82,20 +82,21 @@ li {
     margin-left: 0;
 }
 
-.book-title:hover {
+.book-title:hover,
+.book-read:hover {
     color: var(--accent-colour);
     text-decoration: underline;
     cursor: pointer;
 }
 
-.book-container > p:not(.book-title, :nth-child(4n)) {
-    width: 60%;
-    justify-self: center;
-}
-
-.book-container > p:nth-of-type(4n) {
+.book-read {
     width: fit-content;
     justify-self: end;
+}
+
+.book-container > p:not(.book-title, .book-read) {
+    width: 60%;
+    justify-self: center;
 }
 
 dialog {

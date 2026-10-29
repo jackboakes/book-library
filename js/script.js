@@ -2,7 +2,7 @@ const library = [];
 
 function Book(title, author, page, read) {
     if(!new.target) {
-        throw Error("You muse use the 'new' operator to call the constructor.");
+        throw Error("You must use the 'new' operator to call the constructor.");
     }
     this._id = crypto.randomUUID();
     this.title = title;
@@ -25,6 +25,17 @@ addBookToLibrary("Programmers at Work: Interviews With 19 Programmers Who Shaped
 
 const bookContainer = document.querySelector(".book-container");
 
+function reloadBookContainer()
+{
+    while(bookContainer.lastChild) {
+        bookContainer.removeChild(bookContainer.lastChild);
+    }
+
+    library.forEach(book => {
+        addBookToContainer(book);
+    });
+}
+
 function addBookToContainer(book) {
     const title = document.createElement("p");
     title.classList.add("book-title");
@@ -40,14 +51,18 @@ function addBookToContainer(book) {
     bookContainer.appendChild(page);
 
     const read = document.createElement("p");
-    read.textContent = book.read;
+    read.classList.add("book-read");
+    read.addEventListener("click", e =>{
+        book.read === true ? book.read = false : book.read = true;
+        reloadBookContainer();
+    });
+    read.textContent = book.read === true ? "read" : "unread";
     bookContainer.appendChild(read);
 }
 
 library.forEach(book => {
     addBookToContainer(book);
 });
-
 
 let addBookForm = document.getElementById("add-book-form");
 

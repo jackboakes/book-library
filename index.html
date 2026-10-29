@@ -12,7 +12,9 @@
         <h1>Library of Books</h1>
         <nav>
             <ul>
-                <li><button command="show-modal" commandfor="hello-world" class="new-book">Add New Book</button></li>
+                <li>
+                    <button command="show-modal" commandfor="hello-world" class="new-book">Add New Book</button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -20,7 +22,7 @@
         <h2>Title</h2>
         <h2>Author</h2>
         <h2>Pages</h2>
-        <h2>Read</h2>
+        <h2>Shelve</h2>
         <div class="book-container">
         </div>
     </div>
@@ -43,7 +45,6 @@
                 <input type="number" id="pages" name="pages" min="1" max="20000" required />
             </div>
             <div class="form-row">
-                
                 <input type="checkbox" id="read" name="read" />
                 <label for="read">Read</label>
             </div>
