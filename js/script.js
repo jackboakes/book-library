@@ -1,28 +1,54 @@
-const library = [];
-
-function Book(title, author, page, read) {
-    if(!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor.");
+class Book {
+    constructor(title, author, page, read) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.page = page;
+        this.read = read;
     }
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.page = page;
-    this.read = read;
 }
 
-function addBookToLibrary(title, author, page, read) {
-    let book = new Book(title, author, page, read);
-    library.push(book);
+class Library {
+    #books = [];
+
+    addBook(book) {
+        this.#books.push(book);
+    }
+
+    deleteBook(book) {
+        const index = this.#books.findIndex(element => element.id === book.id);
+        if ((index !== -1)) {
+            this.#books.splice(index, 1);
+        }
+    }
+
+    get books() {
+        return [...this.#books];
+    }
 }
 
-addBookToLibrary("Fear and Loathing in Las Vegas: A Savage Journey to the Heart of the American Dream", "Hunter S. Thompson", 204, true);
-addBookToLibrary("Hell's Angels", "Hunter S. Thompson", 295, true);
-addBookToLibrary("Ways of Seeing", "John Berger", 176, true);
-addBookToLibrary("Kitchen Confidential", "Anthony Bourdain", 362, true);
-addBookToLibrary("The Odyssey of Homer", "Homer, Richmond Lattimore", 390, true);
-addBookToLibrary("Programmers at Work: Interviews With 19 Programmers Who Shaped the Computer Industry", "Susan Lammers", 391, true);
-addBookToLibrary("Impossible Creatures Game Manual", "Relic Entertainment", 29, true);
+let library = new Library();
+
+let fearAndLoathing = new Book("Fear and Loathing in Las Vegas: A Savage Journey to the Heart of the American Dream", "Hunter S. Thompson", 204, true);
+library.addBook(fearAndLoathing);
+
+let hellsAngels = new Book("Hell's Angels", "Hunter S. Thompson", 295, true);
+library.addBook(hellsAngels);
+
+let waysOfSeeing = new Book("Ways of Seeing", "John Berger", 176, true);
+library.addBook(waysOfSeeing);
+
+let kitchenConfidential = new Book("Kitchen Confidential", "Anthony Bourdain", 362, true);
+library.addBook(kitchenConfidential);
+
+let odyssey = new Book("The Odyssey of Homer", "Homer, Richmond Lattimore", 390, true);
+library.addBook(odyssey);
+
+let programmersAtWork = new Book("Programmers at Work: Interviews With 19 Programmers Who Shaped the Computer Industry", "Susan Lammers", 391, true);
+library.addBook(programmersAtWork);
+
+let impossibleCreatures = new Book("Impossible Creatures Game Manual", "Relic Entertainment", 29, true);
+library.addBook(impossibleCreatures);
 
 const bookContainer = document.querySelector(".book-container");
 
@@ -32,7 +58,7 @@ function reloadBookContainer()
         bookContainer.removeChild(bookContainer.lastChild);
     }
 
-    library.forEach(book => {
+    library.books.forEach(book => {
         addBookToContainer(book);
     });
 }
@@ -69,17 +95,13 @@ function addBookToContainer(book) {
     deleteBook.textContent = "delete";
     deleteBook.classList.add("book-delete");
     deleteBook.addEventListener("click", e => {
-        const index = library.findIndex(element => element.id === book.id);
-        if (index !== -1) {
-            library.splice(index, 1);
-        }
-
+        library.deleteBook(book);
         reloadBookContainer();
     });
     bookContainer.appendChild(deleteBook);
 }
 
-library.forEach(book => {
+library.books.forEach(book => {
     addBookToContainer(book);
 });
 
@@ -103,9 +125,11 @@ addBookForm.addEventListener("submit", e => {
         readResult = false;
     }
 
-    const book = new Book(title[0].value, author[0].value, pages[0].value, readResult);
-    addBookToLibrary(book);
-    addBookToContainer(book);
+    let book = new Book(title[0].value, author[0].value, pages[0].value, readResult);
+    library.addBook(book);
+    reloadBookContainer();
+    addBookForm.reset();
+    dialog.close();
 });
 
 const dialog = document.querySelector("dialog");
