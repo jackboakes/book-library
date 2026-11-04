@@ -1,14 +1,13 @@
 const library = [];
 
-function Book(title, author, page, read) {
-    if(!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor.");
+class Book {
+    constructor(title, author, page, read) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.page = page;
+        this.read = read;
     }
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.page = page;
-    this.read = read;
 }
 
 function addBookToLibrary(title, author, page, read) {
@@ -103,9 +102,9 @@ addBookForm.addEventListener("submit", e => {
         readResult = false;
     }
 
-    const book = new Book(title[0].value, author[0].value, pages[0].value, readResult);
-    addBookToLibrary(book);
-    addBookToContainer(book);
+    let book = new Book(title[0].value, author[0].value, pages[0].value, readResult);
+    addBookToLibrary(book.title, book.author, book.page, book.read);
+    reloadBookContainer();
 });
 
 const dialog = document.querySelector("dialog");
